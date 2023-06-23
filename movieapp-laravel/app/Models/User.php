@@ -41,4 +41,21 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function isAdmin()
+    {
+        return $this->admin;
+    }
+
+    public function movies(){
+
+        return $this->hasMany(Movie::class);
+    }
+
+    public function favMovies()
+    {
+        return $this->hasMany(FavMovie::class);
+    }
+
+
 }
