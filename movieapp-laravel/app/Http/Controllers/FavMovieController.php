@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\FavMovieCollection;
+use App\Http\Resources\FavMovieResource;
 use App\Models\FavMovie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class FavMovieController extends Controller
 {
@@ -14,7 +17,12 @@ class FavMovieController extends Controller
      */
     public function index()
     {
-        //
+        $user_id = auth()->user()->id;
+        $movies = FavMovie::get()->where('user_id', $user_id);
+        if (is_null($movies)) {
+            return response()->json('Data not found', 404);
+        }
+        return new FavMovieCollection($movies);
     }
 
     /*
@@ -35,7 +43,20 @@ class FavMovieController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'movie_id' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors());
+        }
+
+        $favMovie = FavMovie::create([
+            'movie_id' => $request->movie_id,
+            'user_id' => auth()->user()->id,
+        ]);
+
+        return response()->json(['Movie added to favourites successfully.', new FavMovieResource($favMovie)]);
     }
 
     /*
@@ -44,9 +65,13 @@ class FavMovieController extends Controller
      * @param  \App\Models\FavMovie  $favMovie
      * @return \Illuminate\Http\Response
      */
-    public function show(FavMovie $favMovie)
+    public function show(int $favMovie_id)
     {
-        //
+        $favMovie = FavMovie::get()->where('id', $favMovie_id)->first();
+        if (!$favMovie) {
+            return response()->json('Data not found', 404);
+        }
+        return new FavMovieResource($favMovie);
     }
 
     /*
@@ -78,8 +103,14 @@ class FavMovieController extends Controller
      * @param  \App\Models\FavMovie  $favMovie
      * @return \Illuminate\Http\Response
      */
-    public function destroy(FavMovie $favMovie)
+    public function destroy(int $favMovie_id)
     {
-        //
+        $favMovie = FavMovie::get()->where('id', $favMovie_id)->first();
+        if (!$favMovie) {
+            return response()->json('Data not found', 404);
+        }
+
+        $favMovie->delete();
+        return response()->json('Movie removed from favourites successfully.');
     }
 }
