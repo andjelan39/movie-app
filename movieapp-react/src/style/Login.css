@@ -1,0 +1,69 @@
+.container h1{
+    font-weight: 500;
+    font-size: 40px;
+    color: #edf0f1;
+    text-align: center;
+    padding: 25px 0;
+}
+
+.login{
+    margin-bottom: 70px;
+    align-items: center;
+}
+
+.form_div{
+    background:rgba(255, 255, 255, 0.13);
+    border-radius: 15px;
+    min-height: 600px;
+    width: 90%;
+    align-self: center;
+    padding: 35px;
+}
+
+.input_field{
+    background-color: rgb(22,26,52);
+    font-size: 22px;
+    padding-left: 25px;
+    font-weight: 300;
+}
+
+.input_field:focus{
+    background-color: rgba(22,26,52, 0.8);
+}
+
+.form-title h4{
+    color: #edf0f1;
+    font-weight: 400;
+}
+
+label{
+    color: #c7c7c7;
+    font-size: 22px;
+    padding: 5px 0;
+}
+
+label:active{
+    background-color: transparent;
+}
+
+.form-control::-webkit-input-placeholder{
+    color: #edf0f1;
+}
+
+.form-control:focus{
+    border-color: #c7c7c7;
+}
+
+form button{
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.form_div span, a{
+    color: #edf0f1;
+    font-size: 20px;
+}
+
+.form_div a:hover{
+    color: rgb(22,26,52);
+}

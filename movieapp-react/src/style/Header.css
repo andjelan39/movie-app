@@ -1,0 +1,62 @@
+body{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: "Outfit", sans-serif;
+}
+
+.image{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    top: 0;
+}
+
+.image__img{
+    display: block;
+    width: 100%;
+}
+
+.headline{
+    position: absolute;
+    top: 0;
+    background-color: transparent;
+    width: 40%;
+    right: 110px;
+    padding-top: 220px;
+    font-family: "Outfit", sans-serif;
+}
+
+.headline h1{
+    font-weight: 700;
+    font-size: 50px;
+    color: #edf0f1;
+    background-color: transparent;
+    text-align: center;
+    padding-bottom: 50px;
+}
+
+.headline p{
+    font-weight: 400;
+    font-size: 20px;
+    color: #edf0f1;
+    background-color: transparent;
+    text-align: left;
+    padding-bottom: 25px;
+    padding-left: 35px;
+}
+
+.headline a{
+    font-size: 20px;
+    color: #edf0f1;
+    background-color: transparent;
+    text-align: left;
+    padding-bottom: 50px;
+}
+
+.headline button{
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-left: 320px;
+    padding: 10px 45px;
+}

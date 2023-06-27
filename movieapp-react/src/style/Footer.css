@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/*li, a{
+    font-family: "Outfit", sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    color: #edf0f1;
+    text-decoration: none;
+}*/
+
+/*.footer{
+    display: flex;
+    padding: 35px 10% 25px 10%;
+}*/
+
+.footer__content{
+    position: absolute;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    
+    background-color: #0E1027;
+}
+
+.footer__div{
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.logo-footer{
+    cursor: pointer;
+    margin: 15px 0;
+}
+
+.ft__links ul{
+    padding: 5px 0;
+}
+
+.ft__links{
+    list-style: none;
+    font-family: "Outfit", sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    color: #edf0f1;
+    text-decoration: none;
+}
+
+.ft__links li{
+    display: inline-block;
+    padding: 0 20px;
+}
+
+.ft__links li a{
+    transition: all 0.3s ease 0s;
+
+}
+
+.ft__links li a:hover{
+    color: #B4D0DF;
+}
+
+.copyright{
+    padding: 20px;
+    color: #edf0f1;
+    position: relative;
+    background-color: #090a17
+};
