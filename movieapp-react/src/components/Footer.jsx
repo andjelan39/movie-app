@@ -1,8 +1,9 @@
 import React from 'react'
 import Flicks from "../flickslogo.png"
 import "../style/Footer.css"
+import {Link} from "react-router-dom";
 
-function Footer() {
+const Footer = () => {
   return (
     <div className='footer__content'>
         <div className='footer__div'>
@@ -11,7 +12,7 @@ function Footer() {
             <ul className='ft__links'>
                 <li><a href="#">EXPLORE WHAT'S ON</a></li>
                 <li><a href="#">AFFILIATE PROGRAM</a></li>
-                <li><a href="#">FLICKS SIGN UP</a></li>
+                <li><Link to='/register'>FLICKS SIGN UP</Link></li>
             </ul>
             <ul className='ft__links'>
                 <li><a href="#">Privacy Policy</a></li>

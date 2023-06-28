@@ -1,7 +1,47 @@
 import React from "react";
 import "../style/Login.css";
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from 'react-router-dom'
 
-function Login() {
+const Login = ({addToken}) => {
+
+  let navigate=useNavigate();
+
+  const [userData, setUserData] = useState({
+    email: "",
+    password: "",
+  });
+
+  function handleInput(e) {
+    let newUserData = userData;
+    newUserData[e.target.name] = e.target.value;
+    //console.log(newUserData);
+    setUserData(newUserData);
+  }
+
+  function handleLogin(e) {
+    e.preventDefault();
+
+    axios
+      .post("http://127.0.0.1:8000/api/login", userData)
+      .then((res) => {
+        console.log(res.data);
+
+        if (res.data.success === true) {
+          window.sessionStorage.setItem("auth_token", res.data.access_token);
+          console.log(res.data);
+          addToken(res.data.access_token);
+          navigate("/");
+        }
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+
+  }
+
   return (
     <div className="container">
       <h1>Log Into Your Account</h1>
@@ -13,27 +53,31 @@ function Login() {
                 <div className="form-title">
                   <h4 className="mb-3">Have Flicks account? Log In</h4>
                 </div>
-                <form>
+                <form onSubmit={handleLogin}>
                   <div className="form-outline form-white mb-2">
-                    <label className="bg-transparent" for="email">Email</label>
+                    <label className="bg-transparent" htmlFor="email">
+                      Email
+                    </label>
                     <input
                       type="email"
-                      class="form-control form-control-sm input_field"
+                      className="form-control form-control-sm input_field"
                       placeholder="Enter your email"
                       id="email"
                       name="email"
-                      style={{height:75+"px", color:"#edf0f1"}}
+                      style={{ height: 75 + "px", color: "#edf0f1" }}
+                      onInput={handleInput}
                     />
                   </div>
                   <div className="form-outline form-white mb-4">
-                    <label for="password">Password</label>
+                    <label htmlFor="password">Password</label>
                     <input
                       type="password"
                       className="form-control form-control-sm input_field"
                       placeholder="Enter your password"
                       id="password"
                       name="password"
-                      style={{height:75+"px", color:"#edf0f1"}}
+                      style={{ height: 75 + "px", color: "#edf0f1" }}
+                      onInput={handleInput}
                     />
                   </div>
                   <div className="mt-3">
@@ -44,12 +88,9 @@ function Login() {
                 </form>
                 <div className="mt-3">
                   <span>Don't have the account?</span>
-                  <a
-                    type="button"
-                    className="p-2 border-0 bg-transparent"
-                    href="#"
-                  >Sign Up
-                  </a>
+                  <Link to="/register" className="p-2 border-0 bg-transparent">
+                    Sign Up
+                  </Link>
                 </div>
               </div>
             </div>
@@ -58,6 +99,6 @@ function Login() {
       </div>
     </div>
   );
-}
+};
 
 export default Login;

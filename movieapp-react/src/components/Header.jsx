@@ -1,8 +1,9 @@
 import React from "react";
 import "../style/Header.css";
 import DunePoster from "../img/duneposter.png";
+import {Link} from "react-router-dom";
 
-function Header() {
+const Header = () => {
   return (
     <div>
       <div className="image">
@@ -19,7 +20,7 @@ function Header() {
             feel like you're right in the middle of the action. Create your
             account NOW and indulge in endless entertainment.
           </p>
-          <a href="#"><button>Register</button></a>
+          <Link to='/register'><button>Register</button></Link>
         </div>
       </div>
     </div>
