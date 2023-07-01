@@ -4,10 +4,8 @@ import "../style/NavBar.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-const NavBar = ({token, removeToken}) => {
-
+const NavBar = ({ token, removeToken }) => {
   function handleLogout() {
-
     var config = {
       method: "post",
       url: "http://127.0.0.1:8000/api/logout",
@@ -30,29 +28,44 @@ const NavBar = ({token, removeToken}) => {
   return (
     <div>
       <header>
-        <link rel="stylesheet" href="NavBar.css" />
         <img className="logo" src={Flicks} alt="logo" />
-        <nav>
-          <ul className="nav__links">
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/movies">Movies</Link>
-            </li>
-            <li>
-              <Link to="/register">Register</Link>
-            </li>
-          </ul>
-        </nav>
+
         {token == null ? (
-          <Link to="/login">
-            <button>Login</button>
-          </Link>
+          <>
+            <ul className="nav__links">
+              <li className="nav-item">
+                <Link to="/">Home</Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/movies">Movies</Link>
+              </li>
+            </ul>
+            <div className="buttons">
+              <Link to="/register">
+                <button>Register</button>
+              </Link>
+              <Link to="/login">
+                <button>Login</button>
+              </Link>
+            </div>
+          </>
         ) : (
-          <Link to="/" onClick={handleLogout}>
-            <button>Logout</button>
-          </Link>
+          <>
+            <ul className="nav__links">
+              <li className="nav-item">
+                <Link to="/">Home</Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/movies">Movies</Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/favMovies">Favourites</Link>
+              </li>
+            </ul>
+            <Link to="/" onClick={handleLogout}>
+              <button>Logout</button>
+            </Link>
+          </>
         )}
       </header>
     </div>

@@ -42,9 +42,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/directors/{id}/movies', [DirectorMovieController::class, 'index'])->name('directors.movies.index');
     Route::get('/genres/{id}/movies', [GenreMovieController::class, 'index'])->name('genres.movies.index'); 
     
-    Route::resource('/movies', MovieController::class)->only(['show', 'index', 'update', 'store', 'destroy']);
+    Route::resource('/movies', MovieController::class)->only(['update', 'store', 'destroy']);
     Route::resource('/favmovies', FavMovieController::class)->only(['index', 'show', 'store', 'destroy']);
 
     Route::post('/logout', [AuthController::class, 'logout']);
 });
 
+Route::resource('/movies', MovieController::class)->only(['show', 'index']);

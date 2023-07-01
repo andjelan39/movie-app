@@ -13,7 +13,7 @@ li, a{
     text-decoration: none;
 }
 
-header{
+header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -30,8 +30,8 @@ header{
     font-weight: 400;
     font-size: 22px;
     text-decoration: none;
-    margin-right: 95px;
     padding-top: 15px;
+    margin-right: auto;
 }
 
 .nav__links li{
@@ -63,4 +63,8 @@ button{
 
 button:hover{
     background-color: rgba(180, 208, 223, 0.8);
+}
+
+.buttons button{
+    margin-left: 25px;
 }

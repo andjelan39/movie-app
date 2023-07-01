@@ -52,16 +52,16 @@ class DatabaseSeeder extends Seeder
         $genre8 = Genre::create(['name' => 'animated']);
 
         $director1 = Director::create([
-            'name' => 'Christopher Nolan',
-            'country' => 'UK'
+            'name' => 'Dario Argento',
+            'country' => 'Italy'
         ]);
         $director2 = Director::create([
             'name' => 'Mary Harron',
             'country' => 'Canada'
         ]);
         $director3 = Director::create([
-            'name' => 'Denis Villeneuve',
-            'country' => 'Canada'
+            'name' => 'Christopher Nolan',
+            'country' => 'UK'
         ]);
         $director4 = Director::create([
             'name' => 'David Fincher',
@@ -72,7 +72,7 @@ class DatabaseSeeder extends Seeder
             'country' => 'China'
         ]);
         $director6 = Director::create([
-            'name' => 'Martin Scorsese',
+            'name' => 'David Lynch',
             'country' => 'USA'
         ]);
         $director7 = Director::create([
@@ -84,24 +84,60 @@ class DatabaseSeeder extends Seeder
             'country' => 'UK'
         ]);
 
+        Director::insert([
+            [
+                'name' => 'Joel Coen',
+                'country' => 'USA'
+            ],
+            [
+                'name' => 'Roger Michell',
+                'country' => 'South Africa'
+            ],
+            [
+                'name' => 'Sidney Lumet',
+                'country' => 'USA'
+            ],
+            [
+                'name' => 'Brian De Palma',
+                'country' => 'USA'
+            ],
+            [
+                'name' => 'Dennis Dugan',
+                'country' => 'USA'
+            ],
+            [
+                'name' => 'Tom McGrath',
+                'country' => 'USA'
+            ],
+            [
+                'name' => 'Dan Gilroy',
+                'country' => 'USA'
+            ],
+            [
+                'name' => 'Alex Proyas',
+                'country' => 'Australia'
+            ],
+        ]);
+
+
         $movie1 = Movie::create([
             'title' => 'American Psycho',
             'release_year' => '2000',
-            'description' => 'In New York City in 1987, a handsome, young urban professional, Patrick Bateman (Christian Bale), lives a second life as a gruesome serial killer by night. The cast is filled by the detective (Willem Dafoe), the fiance, the mistress, the coworker (Jared Leto), and the secretary (Chloë Sevigny). This is a biting, wry comedy examining the elements that make a man a monster.',
+            'description' => 'In New York City in 1987, a handsome, young urban professional, Patrick Bateman, lives a second life as a gruesome serial killer by night. The cast is filled by the detective, the fiance, the mistress, the coworker, and the secretary. This is a biting, wry comedy examining the elements that make a man a monster.',
             'cast' => 'Christian Bale, Willem Dafoe, Chloë Sevigny',
             'image' => 'images/bateman.jpg',
             'genre_id' => $genre7->id,
-            'director_id' => $director2->id,
+            'director_id' => $director1->id,
             'user_id' => $user1->id
         ]);
 
         $movie2 = Movie::create([
-            'title' => 'Fallen Angels',
-            'release_year' => '1995',
-            'description' => 'This Hong Kong-set crime drama features two intertwined storylines—one tells the story of a hitman wishing to leave the criminal underworld (Leon Lai), and his agent, who is infatuated with him (Michelle Reis). The other story is of a mute ex-convict on the run from the police (Takeshi Kaneshiro) and a mentally unstable woman dumped by her boyfriend (Charlie Yeung).',
-            'cast' => 'Leon Lai, Michelle Reis, Takeshi Kaneshiro',
-            'image' => 'images/fallenangels.jpg',
-            'genre_id' => $genre4->id,
+            'title' => 'Suspiria',
+            'release_year' => '1977',
+            'description' => 'Suzy travels to Germany to attend ballet school. When she arrives, no one lets her in, and she sees Pat, another student, fleeing from the school. When Pat reaches her apartment, she is murdered. The next day, Suzy is admitted to her new school, but has a difficult time settling in. As more people die, Suzy uncovers secret history of the place.',
+            'cast' => 'Jessica Harper, Eva Axen',
+            'image' => 'images/suspiria.jpg',
+            'genre_id' => $genre7->id,
             'director_id' => $director5->id,
             'user_id' => $user1->id
         ]);
