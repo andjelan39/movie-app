@@ -10,7 +10,7 @@ const Footer = () => {
             <link rel="stylesheet" href="Footer.css" />
             <img className='logo-footer' src={Flicks} alt="logo" />
             <ul className='ft__links'>
-                <li><a href="#">EXPLORE WHAT'S ON</a></li>
+                <li><Link to='/movies'>EXPLORE WHAT'S ON</Link></li>
                 <li><a href="#">AFFILIATE PROGRAM</a></li>
                 <li><Link to='/register'>FLICKS SIGN UP</Link></li>
             </ul>

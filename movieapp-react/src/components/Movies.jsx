@@ -4,8 +4,9 @@ import OneMovie from "./OneMovie";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-const Movies = () => {
-  const [movies, setMovies] = useState();
+const Movies = ({movies}) => {
+  
+  /*const [movies, setMovies] = useState();
   useEffect(() => {
     if (movies == null) {
       axios.get("http://127.0.0.1:8000/api/movies").then((res) => {
@@ -13,7 +14,7 @@ const Movies = () => {
         setMovies(res.data.movies);
       });
     }
-  }, [movies]);
+  }, [movies]);*/
 
   return (
     <div className="container">
