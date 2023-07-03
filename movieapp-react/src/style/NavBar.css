@@ -67,4 +67,11 @@ button:hover{
 
 .buttons button{
     margin-left: 25px;
+    background-color: transparent;
+    border: solid #edf0f1 2.85px;
+    color: #edf0f1;
+}
+
+.buttons button:hover{
+    background:rgba(255, 255, 255, 0.25);
 }

@@ -127,7 +127,7 @@ class DatabaseSeeder extends Seeder
             'cast' => 'Christian Bale, Willem Dafoe, Chloë Sevigny',
             'image' => 'images/bateman.jpg',
             'genre_id' => $genre7->id,
-            'director_id' => $director1->id,
+            'director_id' => $director2->id,
             'user_id' => $user1->id
         ]);
 
@@ -138,7 +138,7 @@ class DatabaseSeeder extends Seeder
             'cast' => 'Jessica Harper, Eva Axen',
             'image' => 'images/suspiria.jpg',
             'genre_id' => $genre7->id,
-            'director_id' => $director5->id,
+            'director_id' => $director1->id,
             'user_id' => $user1->id
         ]);
 

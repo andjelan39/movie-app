@@ -10,6 +10,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Pagination from "./components/Pagination";
+import MovieDetails from "./components/MovieDetails";
 
 function App() {
   const [token, setToken] = useState();
@@ -41,6 +42,19 @@ function App() {
 
   const currentPosts = movies.slice(firstPostIndex, lastPostIndex);
 
+  const [movieDetails, setMovieDetails] = useState();
+  const getMovieDetails = (id) => {
+    if (id == null) {
+      setMovieDetails(null);
+    } else {
+      movies.map((movie) => {
+        if (movie.id === id) {
+          setMovieDetails(movie);
+        }
+      });
+    }
+  };
+
   return (
     <BrowserRouter>
       <NavBar token={token} removeToken={removeToken} />
@@ -59,7 +73,8 @@ function App() {
           path="/movies"
           element={
             <React.Fragment>
-              <Movies movies={currentPosts} />
+              <Movies movies={currentPosts}
+              getMovieDetails={getMovieDetails}  />
               <Pagination
                 totalPosts={movies.length}
                 postsPerPage={postsPerPage}
@@ -69,6 +84,8 @@ function App() {
             </React.Fragment>
           }
         />
+        <Route path="/movie-details" element={<MovieDetails
+        movie={movieDetails} />} />
       </Routes>
       <Footer />
     </BrowserRouter>

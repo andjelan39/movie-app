@@ -1,0 +1,86 @@
+.details-wrapper{
+    background:rgba(255, 255, 255, 0.13);
+    border-radius: 15px;
+    min-height: 700px;
+    width: 90%;
+    align-self: center;
+    padding: 45px;
+    margin: 55px 0;
+    align-items: start;
+}
+
+.details-img-div{
+    width: 40%;
+}
+
+.details-img{
+    width: 100%;
+    border-radius: 15px;
+    border: solid #edf0f1 6px;
+}
+
+.details-txt{
+    padding-left: 37.5px;
+}
+
+.details-txt h1{
+    padding-top: 3px;
+    padding-bottom: 35px;
+    text-align: left;
+}
+
+.details-txt span{
+    padding: 5px 15px;
+    border: solid #edf0f1 1.5px;
+    color: #edf0f1;
+    border-radius: 15px;
+    text-transform: capitalize;
+}
+
+.details-txt-info{
+    margin-top: 20px;
+}
+
+.details-txt-subtitle{
+    color: #edf0f1;
+    font-size: 21px;
+    margin-bottom: 5px;
+}
+
+.details-txt-desc{
+    margin: 35px 0 20px 0;
+    color: #edf0f1;
+    font-size: 20px;
+    word-wrap: break-word;
+}
+
+.details-txt-footer{
+    color: #edf0f1;
+    font-size: 21px;
+    margin: 65px 0 15px 0;
+}
+
+.details-buttons button{
+    margin-right: 15px;
+    font-weight: 500;
+}
+
+.add-to-fav button{
+  width: 49px;
+  height: 49px;
+  font-family: inherit;
+  font-weight: 400;
+  font-size: 21px;
+  margin: 3px 0 10px 10px;
+  padding: 1px;
+  border: solid #edf0f1 2px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: transparent;
+  color: rgb(204, 203, 203);
+}
+
+.add-to-fav button:hover{
+    background-color: rgba(180, 208, 223, 0.1);
+}

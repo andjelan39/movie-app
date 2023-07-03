@@ -4,8 +4,7 @@ import OneMovie from "./OneMovie";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-const Movies = ({movies}) => {
-  
+const Movies = ({ movies, getMovieDetails }) => {
   /*const [movies, setMovies] = useState();
   useEffect(() => {
     if (movies == null) {
@@ -23,7 +22,13 @@ const Movies = ({movies}) => {
           {movies == null ? (
             <></>
           ) : (
-            movies.map((movie) => <OneMovie movie={movie} key={movie.id} />)
+            movies.map((movie) => (
+              <OneMovie
+                movie={movie}
+                key={movie.id}
+                getMovieDetails={getMovieDetails}
+              />
+            ))
           )}
         </div>
       </div>
