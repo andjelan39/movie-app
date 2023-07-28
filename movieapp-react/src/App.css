@@ -3,6 +3,11 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  color: #edf0f1;
+}
+
+*{
+  color: #edf0f1;
 }
 
 .App {

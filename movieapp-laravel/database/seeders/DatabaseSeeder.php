@@ -42,14 +42,14 @@ class DatabaseSeeder extends Seeder
             'admin' => false,
         ]);
 
-        $genre1 = Genre::create(['name' => 'thriller']);
-        $genre2 = Genre::create(['name' => 'action']);
-        $genre3 = Genre::create(['name' => 'comedy']);
-        $genre4 = Genre::create(['name' => 'drama']);
-        $genre5 = Genre::create(['name' => 'crime']);
-        $genre6 = Genre::create(['name' => 'romance']);
-        $genre7 = Genre::create(['name' => 'horror']);
-        $genre8 = Genre::create(['name' => 'animated']);
+        $genre1 = Genre::create(['name' => 'thriller', 'slug' => 'thriller']);
+        $genre2 = Genre::create(['name' => 'action', 'slug' => 'action' ]);
+        $genre3 = Genre::create(['name' => 'comedy', 'slug' => 'comedy']);
+        $genre4 = Genre::create(['name' => 'drama', 'slug' => 'drama']);
+        $genre5 = Genre::create(['name' => 'crime', 'slug' => 'crime']);
+        $genre6 = Genre::create(['name' => 'romance', 'slug' => 'romance']);
+        $genre7 = Genre::create(['name' => 'horror', 'slug' => 'horror']);
+        $genre8 = Genre::create(['name' => 'animated', 'slug' => 'animated']);
 
         $director1 = Director::create([
             'name' => 'Dario Argento',
@@ -122,6 +122,7 @@ class DatabaseSeeder extends Seeder
 
         $movie1 = Movie::create([
             'title' => 'American Psycho',
+            'slug' => 'american-psycho',
             'release_year' => '2000',
             'description' => 'In New York City in 1987, a handsome, young urban professional, Patrick Bateman, lives a second life as a gruesome serial killer by night. The cast is filled by the detective, the fiance, the mistress, the coworker, and the secretary. This is a biting, wry comedy examining the elements that make a man a monster.',
             'cast' => 'Christian Bale, Willem Dafoe, Chloë Sevigny',
@@ -133,6 +134,7 @@ class DatabaseSeeder extends Seeder
 
         $movie2 = Movie::create([
             'title' => 'Suspiria',
+            'slug' => 'suspiria',
             'release_year' => '1977',
             'description' => 'Suzy travels to Germany to attend ballet school. When she arrives, no one lets her in, and she sees Pat, another student, fleeing from the school. When Pat reaches her apartment, she is murdered. The next day, Suzy is admitted to her new school, but has a difficult time settling in. As more people die, Suzy uncovers secret history of the place.',
             'cast' => 'Jessica Harper, Eva Axen',

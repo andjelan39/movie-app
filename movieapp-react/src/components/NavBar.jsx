@@ -4,7 +4,7 @@ import "../style/NavBar.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-const NavBar = ({ token, removeToken }) => {
+const NavBar = ({ token, removeToken, currentUser }) => {
   function handleLogout() {
     var config = {
       method: "post",
@@ -24,6 +24,14 @@ const NavBar = ({ token, removeToken }) => {
         console.log(error);
       });
   }
+
+  const admin = () => {
+    if (currentUser != null) {
+      return currentUser.admin;
+    } else {
+      return false;
+    }
+  };
 
   return (
     <div>
@@ -59,8 +67,17 @@ const NavBar = ({ token, removeToken }) => {
                 <Link to="/movies">Movies</Link>
               </li>
               <li className="nav-item">
-                <Link to="/favMovies">Favourites</Link>
+                <Link to="/favourites">Favourites</Link>
               </li>
+              {admin() ? (
+                <li className="nav-item">
+                  <Link to="/" className="nav-link">
+                    Dashboard
+                  </Link>
+                </li>
+              ) : (
+                <></>
+              )}
             </ul>
             <Link to="/" onClick={handleLogout}>
               <button>Logout</button>

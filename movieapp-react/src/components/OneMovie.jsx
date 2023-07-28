@@ -1,12 +1,25 @@
 import React from "react";
 import "../style/Movies.css";
-import Blade from "../img/bladerunner.jpg";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import {Link} from "react-router-dom";
 
-const OneMovie = ({ movie, getMovieDetails }) => {
+const OneMovie = ({ movie, getMovieDetails, currentUser, favouriteMovies, favourite, removeFromFaves, addToFaves}) => {
+
+  const admin = () =>{
+    if(currentUser != null){
+      return currentUser.admin;
+     }else{
+       return false;
+     }
+  }
+
+  if(favouriteMovies != null){
+    favouriteMovies.map((favMovie) =>{
+      if(favMovie.movie != null && favMovie.movie.id == movie.id){
+        favourite = true;
+      }
+    })
+  };
+
   return (
     <div className="col-12 col-md-6 col-lg-4">
       <div className="card">
@@ -20,7 +33,7 @@ const OneMovie = ({ movie, getMovieDetails }) => {
           <p className="card-sub-title">Director: {movie.director.name}</p>
           <p className="card-sub-title">Cast: {movie.cast}</p>
           <p className="card-info">{movie.description}</p>
-          <Link to='/movie-details' onClick={()=> getMovieDetails(movie.id)}><button className="card-btn">Details</button></Link>
+          <Link to={`/movie-details/${movie.slug}`} onClick={()=> getMovieDetails(movie.id)}><button className="card-btn">Details</button></Link>
         </div>
       </div>
     </div>

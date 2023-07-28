@@ -1,11 +1,46 @@
 import React from "react";
 import "../style/MovieDetails.css";
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import {FaBookmark} from "react-icons/fa"
-import {AiFillEdit} from "react-icons/ai"
+import { FaBookmark, FaRegBookmark } from "react-icons/fa";
+import { AiFillEdit } from "react-icons/ai";
 
-const MovieDetails = ({ movie }) => {
+const MovieDetails = ({
+  movie,
+  currentUser,
+  favouriteMovies,
+  favourite,
+  removeFromFaves,
+  addToFaves,
+  token,
+}) => {
+  
+  const admin = () => {
+    if (currentUser != null) {
+      return currentUser.admin;
+    } else {
+      return false;
+    }
+  };
+
+  if (favouriteMovies != null) {
+    favouriteMovies.map((favMovie) => {
+      if (favMovie.movie != null && favMovie.movie.id == movie.id) {
+        favourite = true;
+      }
+    });
+  }
+
+  function addToFavourites() {
+    if (currentUser != null) {
+      addToFaves(movie.id);
+    } else {
+    }
+  }
+
+  function removeFromFavourites() {
+    removeFromFaves(movie.id);
+  }
+
   return (
     <div className="container">
       <div className="d-flex justify-content-center">
@@ -23,8 +58,46 @@ const MovieDetails = ({ movie }) => {
                 <h1>{movie.title}</h1>
               </div>
               <div className="add-to-fav">
-                <button><AiFillEdit/></button>
-                <button><FaBookmark/></button>
+                {token == null ? (
+                  <>
+                    <Link to="/login">
+                      <button>
+                        <FaRegBookmark />
+                      </button>
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    {admin() ? (
+                      <>
+                        <button>
+                          <AiFillEdit />
+                        </button>
+                        {favourite ? (
+                          <button onClick={removeFromFavourites}>
+                            <FaBookmark />
+                          </button>
+                        ) : (
+                          <button onClick={addToFavourites}>
+                            <FaRegBookmark />
+                          </button>
+                        )}
+                      </>
+                    ) : (
+                      <>
+                        {favourite ? (
+                          <button onClick={removeFromFavourites}>
+                            <FaBookmark />
+                          </button>
+                        ) : (
+                          <button onClick={addToFavourites}>
+                            <FaRegBookmark />
+                          </button>
+                        )}
+                      </>
+                    )}
+                  </>
+                )}
               </div>
             </div>
             <span>{movie.genre.name}</span>

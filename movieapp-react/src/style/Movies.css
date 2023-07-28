@@ -70,3 +70,110 @@
 .movies{
     margin: 40px 0;
 }
+
+/*button{
+    padding: 9px 25px;
+    background-color: rgba(180, 208, 223, 1);
+    border: none;
+    border-radius: 30px;
+    font-family: "Outfit", sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    color: #0E1027;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}*/
+
+button:hover{
+    background-color: rgba(180, 208, 223, 0.8);
+}
+
+.button-section button, select{
+    margin-top: 2px;
+    margin-left: 20px;
+    background-color: transparent;
+    border: solid #edf0f1 0.5px;
+    color: #edf0f1;
+    font-size: 19px;
+    padding: 7px 20px;
+    font-weight: 300;
+    border-radius: 25px;
+    outline: none;
+}
+
+.button-section button:hover{
+    background:rgba(255, 255, 255, 0.07);
+}
+
+/*.button-section button:focus{
+    background:rgba(255, 255, 255, 0.2);
+}*/
+
+.movies-hero-section{
+    margin: 0 60px 40px 60px;
+    font-size: 20px;
+    text-align: center;
+    font-weight: 300;
+}
+
+.box{
+    max-width: 400px;
+    width: 100%;
+    margin-right: 10px;
+}
+
+.box .search-box{
+    position: relative;
+    height: 50px;
+    max-width: 380px;
+    margin-left: auto;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+#check:checked ~ .search-box{
+    max-width: 380px;
+}
+
+.search-box input {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    border-radius: 25px;
+    background: #fff;
+    outline: none;
+    border: none;
+    padding-left: 20px;
+    color: #0E1027;
+    font-size: 19px;
+    font-weight: 400;
+}
+
+.search-box .icon{
+    position: absolute;
+    right: -4px;
+    top: 0;
+    width: 55px;
+    background: #73737b;
+    height: 100%;
+    border-radius: 0 25px 25px 0;
+    text-align: center;
+    line-height: normal;
+    padding-bottom: 15px;
+    padding-right: 47px;
+}
+
+.search-box .icon:hover{
+    background: #64646a;
+}
+
+#check:checked ~ .search-box .icon{
+    background: #73737b;
+    border-radius: 0 25px 25px 0;
+}
+
+#check{
+    display: none;
+}

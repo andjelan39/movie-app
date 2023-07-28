@@ -28,7 +28,7 @@ header {
     list-style: none;
     font-family: "Outfit", sans-serif;
     font-weight: 400;
-    font-size: 22px;
+    font-size: 20px;
     text-decoration: none;
     padding-top: 15px;
     margin-right: auto;
@@ -73,5 +73,5 @@ button:hover{
 }
 
 .buttons button:hover{
-    background:rgba(255, 255, 255, 0.25);
+    background:rgba(255, 255, 255, 0.1);
 }

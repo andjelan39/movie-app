@@ -5,7 +5,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom'
 
-const Login = ({addToken}) => {
+const Login = ({addToken, addUser}) => {
 
   let navigate=useNavigate();
 
@@ -33,6 +33,7 @@ const Login = ({addToken}) => {
           window.sessionStorage.setItem("auth_token", res.data.access_token);
           console.log(res.data);
           addToken(res.data.access_token);
+          addUser(userData);
           navigate("/");
         }
       })

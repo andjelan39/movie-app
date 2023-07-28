@@ -42,6 +42,7 @@ class MovieController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|max:255',
+            'slug' => 'required|string|max:255',
             'release_year' => 'required|integer',
             'description' => 'required|string',
             'cast' => 'required|string',
@@ -56,6 +57,7 @@ class MovieController extends Controller
 
         $movie = Movie::create([
             'title' => $request->title,
+            'slug' => $request->slug,
             'release_year' => $request->release_year,
             'description' => $request->description,
             'cast' => $request->cast,
@@ -106,6 +108,7 @@ class MovieController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|max:255',
+            'slug' => 'required|string|max:255',
             'release_year' => 'required|integer',
             'description' => 'required|string',
             'cast' => 'required|string',
@@ -120,6 +123,7 @@ class MovieController extends Controller
 
         $movie = Movie::find($movie_id);
         $movie->title = $request->title;
+        $movie->slug = $request->slug;
         $movie->release_year = $request->release_year;
         $movie->description = $request->description;
         $movie->cast = $request->cast;
