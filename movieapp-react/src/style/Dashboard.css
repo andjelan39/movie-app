@@ -1,0 +1,65 @@
+.dashboard{
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.admin-dsbrd{
+    padding: 15px 0 45px 0;
+    font-size: 18px;
+}
+
+table button{
+    color: #0E1027;
+    background:  rgba(180, 208, 223, 1);
+    font-size: 19px;
+    padding: 7px 15px;
+    font-weight: 400;
+    border-radius: 25px;
+    outline: none;
+    margin-right: 10px;
+    margin-bottom: 5px;
+}
+
+table button:hover{
+    background-color: transparent;
+    border: solid #edf0f1 0.5px;
+    color: #edf0f1;
+}
+
+table{
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 25px;
+    font-size: 19px;
+}
+
+.sidebar-menu a ul{
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.sidebar-menu{
+    min-height: 70vh;
+}
+
+.nav-pills li a:hover{
+    background-color:  rgba(255, 255, 255, 0.15);
+}
+
+.dashboard-nav h2, h5{
+    margin: 20px;
+}
+
+.button-section button{
+    background-color: transparent;
+    border: solid #edf0f1 0.5px;
+    color: #edf0f1;
+    font-size: 19px;
+    padding: 7px 20px;
+    font-weight: 300;
+    border-radius: 25px;
+    outline: none;
+}
+
+table td a:hover{
+    color: rgba(180, 208, 223, 1);
+}

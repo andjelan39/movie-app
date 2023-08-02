@@ -13,9 +13,12 @@ import Pagination from "./components/Pagination";
 import MovieDetails from "./components/MovieDetails";
 import Faves from "./components/Faves";
 import FAQ from "./components/FAQ";
+import AdminDashboard from "./components/AdminDashboard";
+import AddMovie from "./components/AddMovie";
+import { UpdateMovie } from "./components/UpdateMovie";
+import swal from 'sweetalert';
 
 function App() {
-
   const [token, setToken] = useState();
 
   function addToken(auth_token) {
@@ -124,6 +127,7 @@ function App() {
           ...favouriteMovies,
           response.data[1],
         ]);
+        swal("Success!", "Movie successfully added to favourites!", "success");
       })
       .catch(function (error) {
         console.log(error);
@@ -153,6 +157,7 @@ function App() {
       .then(function (response) {
         console.log(JSON.stringify(response.data));
         getFaves();
+        swal("Success!", "Movie successfully removed from favourites!", "success");
       })
       .catch(function (error) {
         console.log(error);
@@ -186,6 +191,41 @@ function App() {
       });
     }
   }, [directors]);
+
+  const deleteMovie = (e, id) => {
+    e.preventDefault();
+
+    var config = {
+      method: "delete",
+      url: "http://127.0.0.1:8000/api/movies/" + id,
+      headers: {
+        Authorization: "Bearer " + window.sessionStorage.getItem("auth_token"),
+      },
+    };
+
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        swal("Success!", "Movie successfully deleted!", "success");
+        favouriteMovies.map((favMovie) => {
+          if (favMovie.movie.id == id) {
+            removeFromFaves(id);
+          }
+        });
+        reloadMovies();
+      })
+      .catch(function (error) {
+        console.log(error);
+        swal("Error!", "Failed to delete the movie!", "error");
+      });
+  };
+
+  const reloadMovies = () => {
+    axios.get("http://127.0.0.1:8000/api/movies").then((res) => {
+      console.log(res.data);
+      setMovies(res.data.movies);
+    });
+  };
 
   return (
     <BrowserRouter>
@@ -264,6 +304,31 @@ function App() {
               />
             </React.Fragment>
           }
+        />
+        <Route
+          path="/admin-dashboard"
+          element={
+            <AdminDashboard
+              movies={movies}
+              deleteMovie={deleteMovie}
+              currentUser={currentUser}
+              getMovieDetails={getMovieDetails}
+            />
+          }
+        />
+        <Route
+          path="/admin-dashboard/add-movie"
+          element={
+            <AddMovie
+              genres={genres}
+              directors={directors}
+              reloadMovies={reloadMovies}
+            />
+          }
+        />
+        <Route
+          path="/movies/:id/edit-movie"
+          element={<UpdateMovie reloadMovies={reloadMovies} />}
         />
       </Routes>
       <Footer />

@@ -3,7 +3,8 @@ import "../style/Login.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import swal from 'sweetalert';
 
 const Login = ({addToken, addUser}) => {
 
@@ -39,6 +40,7 @@ const Login = ({addToken, addUser}) => {
       })
       .catch((e) => {
         console.log(e);
+        swal("Error!", "Please enter the correct email and password!", "error");
       });
 
   }

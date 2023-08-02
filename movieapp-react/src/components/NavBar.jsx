@@ -71,7 +71,7 @@ const NavBar = ({ token, removeToken, currentUser }) => {
               </li>
               {admin() ? (
                 <li className="nav-item">
-                  <Link to="/" className="nav-link">
+                  <Link to="/admin-dashboard" className="nav-link">
                     Dashboard
                   </Link>
                 </li>

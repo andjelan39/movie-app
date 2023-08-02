@@ -43,7 +43,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     }
     );
 
-    Route::resource('/movies', MovieController::class)->only(['update', 'store', 'destroy']);
+    Route::resource('/movies', MovieController::class)->only(['update', 'store', 'destroy', 'edit']);
     Route::resource('/favmovies', FavMovieController::class)->only(['index', 'show', 'store', 'destroy']);
 
     Route::post('/logout', [AuthController::class, 'logout']);

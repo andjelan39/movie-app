@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom'
+import swal from 'sweetalert';
 
 const Register = () => {
 
@@ -28,6 +29,7 @@ const Register = () => {
       .post("http://127.0.0.1:8000/api/register", userData)
       .then((res) => {
         console.log(res.data);
+        swal("Success!", "You registered successfully!", "success");
         navigate("/login");
       })
       .catch((e) => {

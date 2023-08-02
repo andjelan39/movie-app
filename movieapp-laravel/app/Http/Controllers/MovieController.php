@@ -52,7 +52,10 @@ class MovieController extends Controller
         ]);
 
         if($validator->fails()){
-            return response()->json($validator->errors());
+            return response()->json([
+                'status' => 422,
+                'errors' => $validator->messages()
+            ], 422);
         }
 
         $movie = Movie::create([
@@ -62,12 +65,12 @@ class MovieController extends Controller
             'description' => $request->description,
             'cast' => $request->cast,
             'image' => $request->image,
-            'genre_id' => $request->genre_id,
-            'director_id' => $request->director_id,
+            'genre_id' => $request->input('genre_id'),
+            'director_id' => $request->input('director_id'),
             'user_id' => Auth::user()->id,
         ]);
 
-        return response()->json(['Movie created successfully.', new MovieResource($movie)]);
+        return response()->json(['Movie created successfully.', new MovieResource($movie), 'success' => true]);
 
     }
 
@@ -92,9 +95,21 @@ class MovieController extends Controller
      * @param  \App\Models\Movie  $movie
      * @return \Illuminate\Http\Response
      */
-    public function edit(Movie $movie)
+    public function edit($id)
     {
-        //
+        $movie = Movie::find($id);
+        if($movie){
+            return response()->json([
+                'status' => 200,
+                'movie' => $movie,
+            ]);
+        }else{
+            return response()->json([
+                'status' => 404,
+                'message' => 'Movie not found',
+            ]);
+        }
+
     }
 
     /*
@@ -128,12 +143,12 @@ class MovieController extends Controller
         $movie->description = $request->description;
         $movie->cast = $request->cast;
         $movie->image = $request->image;
-        $movie->genre_id = $request->genre_id;
-        $movie->director_id = $request->director_id;
+        $movie->genre_id = $request->input('genre_id');
+        $movie->director_id = $request->input('director_id');
 
         $movie->save();
 
-        return response()->json(['Movie updated successfully.', new MovieResource($movie)]);
+        return response()->json(['Movie updated successfully.', new MovieResource($movie), 'success' => true]);
     }
 
     /*

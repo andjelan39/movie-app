@@ -70,9 +70,9 @@ const MovieDetails = ({
                   <>
                     {admin() ? (
                       <>
-                        <button>
+                        <Link to={`/movies/${movie.id}/edit-movie`}><button>
                           <AiFillEdit />
-                        </button>
+                        </button></Link>
                         {favourite ? (
                           <button onClick={removeFromFavourites}>
                             <FaBookmark />
