@@ -9,10 +9,10 @@ const Footer = () => {
         <div className='footer__div'>
             <link rel="stylesheet" href="Footer.css" />
             <img className='logo-footer' src={Flicks} alt="logo" />
-            <ul className='ft__links'>
-                <li><Link to='/movies'>EXPLORE WHAT'S ON</Link></li>
-                <li><a href="#">AFFILIATE PROGRAM</a></li>
-                <li><Link to='/register'>FLICKS SIGN UP</Link></li>
+            <ul className='ft__links text-uppercase'>
+                <li><Link to='/movies'>Explore what's on</Link></li>
+                <li><Link to="/contact">Reach out to flicks</Link></li>
+                <li><Link to='/register'>Flicks sign up</Link></li>
             </ul>
             <ul className='ft__links'>
                 <li><a href="#">Privacy Policy</a></li>
@@ -26,7 +26,7 @@ const Footer = () => {
             ©2023 Flicks. All Rights Reserved.
         </div>
     </div>
-   
+
   )
 }
 

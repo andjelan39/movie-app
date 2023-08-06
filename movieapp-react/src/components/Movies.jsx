@@ -135,7 +135,7 @@ const Movies = ({
                   setSearchTerm(event.target.value);
                 }}
               />
-              <button className="icon">
+              <button className="icon" disabled>
                 <BsSearch />
               </button>
             </div>

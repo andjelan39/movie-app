@@ -12,6 +12,7 @@ const AdminDashboard = ({
   currentUser,
   getMovieDetails,
 }) => {
+
   const admin = () => {
     if (currentUser != null) {
       return currentUser.admin;
@@ -19,6 +20,7 @@ const AdminDashboard = ({
       return false;
     }
   };
+  
   /*$(document).ready(function () {
     $("#table").DataTable({
       responsive: true,
@@ -52,65 +54,76 @@ const AdminDashboard = ({
   });*/
 
   return (
-    <div
-      className="dashboard-nav"
-      style={{ width: "83%", marginLeft: "auto", marginRight: "auto" }}
-    >
-      <h2>Admin Dashboard</h2>
-      <h5>Logged in: {currentUser.name}</h5>
-      <div className="button-section d-flex justify-content-between">
-        <div>
-          <Link to="/admin-dashboard">
-            <button className="mb-1" type="button">
-              Movies
-            </button>
-          </Link>
-          <Link to="/movies">
-            <button className="mb-1" type="button">
-              Bookings
-            </button>
-          </Link>
-        </div>
-        <div>
-          <Link to="/admin-dashboard/add-movie">
-            <button className="mb-1" type="button">
-              Add Movie
-            </button>
-          </Link>
-        </div>
-      </div>
-      <hr
-        style={{
-          borderWidth: 2 + "px",
-        }}
-      />
-      <div className="admin-dsbrd">
-        <MoviesDataTable
-          movies={movies}
-          deleteMovie={deleteMovie}
-          getMovieDetails={getMovieDetails}
-        />
-      </div>
-      {/*<div className="admin-dsbrd">
-        <div className="dashboard">
-          <table id="table" className="display align-items-center">
-            <thead>
-              <tr>
-                <th id="idZap">ID</th>
-                <th>Title</th>
-                <th>Slug</th>
-                <th>Release Year</th>
-                <th>Description</th>
-                <th>Cast</th>
-                <th>Genre</th>
-                <th>Director</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-          </table>
-        </div>
-      </div>*/}
+    <div>
+      {admin() ? (
+                <div
+                className="dashboard-nav"
+                style={{ width: "83%", marginLeft: "auto", marginRight: "auto" }}
+              >
+                <h2>Admin Dashboard</h2>
+                <h5>Logged in: {currentUser.name}</h5>
+                <div className="button-section d-flex justify-content-between">
+                  <div>
+                    <Link to="/admin-dashboard">
+                      <button className="mb-1" type="button">
+                        Movies
+                      </button>
+                    </Link>
+                    <Link to="/movies">
+                      <button className="mb-1" type="button">
+                        Bookings
+                      </button>
+                    </Link>
+                  </div>
+                  <div>
+                    <Link to="/admin-dashboard/add-movie">
+                      <button className="mb-1" type="button">
+                        Add Movie
+                      </button>
+                    </Link>
+                  </div>
+                </div>
+                <hr
+                  style={{
+                    borderWidth: 2 + "px",
+                  }}
+                />
+                <div className="admin-dsbrd">
+                  <MoviesDataTable
+                    movies={movies}
+                    deleteMovie={deleteMovie}
+                    getMovieDetails={getMovieDetails}
+                  />
+                </div>
+                {/*<div className="admin-dsbrd">
+                  <div className="dashboard">
+                    <table id="table" className="display align-items-center">
+                      <thead>
+                        <tr>
+                          <th id="idZap">ID</th>
+                          <th>Title</th>
+                          <th>Slug</th>
+                          <th>Release Year</th>
+                          <th>Description</th>
+                          <th>Cast</th>
+                          <th>Genre</th>
+                          <th>Director</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                    </table>
+                  </div>
+                </div>*/}
+              </div>
+              ) : (
+                <>
+                <div className="container d-flex justify-content-center" style={{minHeight: 60 + "vh"}}>
+                  <h2 style={{textAlign: "center", margin: "auto"}}>Only admins have access to this page!</h2>
+                </div>
+                </>
+              )}
     </div>
+    
   );
 };
 

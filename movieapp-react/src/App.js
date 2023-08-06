@@ -16,7 +16,9 @@ import FAQ from "./components/FAQ";
 import AdminDashboard from "./components/AdminDashboard";
 import AddMovie from "./components/AddMovie";
 import { UpdateMovie } from "./components/UpdateMovie";
-import swal from 'sweetalert';
+import swal from "sweetalert";
+import Contact from "./components/Contact";
+import Contact1 from "./components/Contact1";
 
 function App() {
   const [token, setToken] = useState();
@@ -157,7 +159,11 @@ function App() {
       .then(function (response) {
         console.log(JSON.stringify(response.data));
         getFaves();
-        swal("Success!", "Movie successfully removed from favourites!", "success");
+        swal(
+          "Success!",
+          "Movie successfully removed from favourites!",
+          "success"
+        );
       })
       .catch(function (error) {
         console.log(error);
@@ -323,12 +329,28 @@ function App() {
               genres={genres}
               directors={directors}
               reloadMovies={reloadMovies}
+              currentUser={currentUser}
             />
           }
         />
         <Route
           path="/movies/:id/edit-movie"
-          element={<UpdateMovie reloadMovies={reloadMovies} />}
+          element={
+            <UpdateMovie
+              reloadMovies={reloadMovies}
+              currentUser={currentUser}
+              genres={genres}
+              directors={directors}
+            />
+          }
+        />
+        {/*<Route
+          path="/contact"
+          element={<Contact/>}
+        />*/}
+        <Route
+          path="/contact"
+          element={<Contact/>}
         />
       </Routes>
       <Footer />
