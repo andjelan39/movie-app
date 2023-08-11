@@ -1,12 +1,14 @@
 <?php
 
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\DirectorController;
 use App\Http\Controllers\DirectorMovieController;
 use App\Http\Controllers\FavMovieController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\GenreMovieController;
 use App\Http\Controllers\MovieController;
+use App\Http\Controllers\ShowtimeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -29,6 +31,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::resource('/users', UserController::class)->only(['show', 'index']);
 Route::resource('/genres', GenreController::class)->only(['show', 'index']);
 Route::resource('/directors', DirectorController::class)->only(['show', 'index']);
+Route::resource('/showtimes', ShowtimeController::class)->only(['show', 'index']);
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -44,6 +47,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     );
 
     Route::resource('/movies', MovieController::class)->only(['update', 'store', 'destroy', 'edit']);
+    Route::resource('/showtimes', ShowtimeController::class)->only(['store', 'destroy']);
+    Route::resource('/bookings', BookingController::class)->only(['show', 'index', 'store', 'destroy']);
     Route::resource('/favmovies', FavMovieController::class)->only(['index', 'show', 'store', 'destroy']);
 
     Route::post('/logout', [AuthController::class, 'logout']);

@@ -57,5 +57,9 @@ class User extends Authenticatable
         return $this->hasMany(FavMovie::class);
     }
 
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class);
+    }
 
 }
