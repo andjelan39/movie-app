@@ -63,3 +63,23 @@ table{
 table td a:hover{
     color: rgba(180, 208, 223, 1);
 }
+
+.showtimes-tbl{
+    padding: 15px 0 45px 0;
+    font-size: 18px;
+}
+
+.admin-dsbrd{
+    display: none;
+}
+
+.admin-dsbrd.active{
+    display: block;
+}
+
+.movies-hero-section{
+    margin: 40px 60px;
+    font-size: 20px;
+    text-align: center;
+    font-weight: 300;
+}

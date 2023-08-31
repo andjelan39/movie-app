@@ -1,18 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import "datatables.net-dt/css/jquery.dataTables.css";
 import "jquery/dist/jquery.min.js";
 import "datatables.net-dt/js/dataTables.dataTables";
 import "../style/Dashboard.css";
 import { Link } from "react-router-dom";
 import MoviesDataTable from "./MoviesDataTable";
+import ShowtimesDataTable from "./ShowtimesDataTable";
+import BookingsDataTable from "./BookingsDataTable";
 
 const AdminDashboard = ({
   movies,
   deleteMovie,
   currentUser,
   getMovieDetails,
+  showtimes,
+  deleteShowtime,
+  bookings,
+  deleteBooking,
+  token
 }) => {
-
   const admin = () => {
     if (currentUser != null) {
       return currentUser.admin;
@@ -20,7 +26,13 @@ const AdminDashboard = ({
       return false;
     }
   };
-  
+
+  const [toggleState, setToggleState] = useState(1);
+
+  const toggleTab = (index) => {
+    setToggleState(index);
+  };
+
   /*$(document).ready(function () {
     $("#table").DataTable({
       responsive: true,
@@ -56,51 +68,92 @@ const AdminDashboard = ({
   return (
     <div>
       {admin() ? (
-                <div
-                className="dashboard-nav"
-                style={{ width: "83%", marginLeft: "auto", marginRight: "auto" }}
+        <div
+          className="dashboard-nav"
+          style={{ width: "83%", marginLeft: "auto", marginRight: "auto" }}
+        >
+          <h2>Admin Dashboard</h2>
+          <h5>Logged in: {currentUser.name}</h5>
+          <div className="button-section d-flex justify-content-between">
+            <div>
+              <button
+                className={
+                  toggleState === 1 ? "mb-1 tab-btn active" : "mb-1 tab-btn"
+                }
+                onClick={() => toggleTab(1)}
               >
-                <h2>Admin Dashboard</h2>
-                <h5>Logged in: {currentUser.name}</h5>
-                <div className="button-section d-flex justify-content-between">
-                  <div>
-                    <Link to="/admin-dashboard">
-                      <button className="mb-1" type="button">
-                        Movies
-                      </button>
-                    </Link>
-                    <Link to="/movies">
-                      <button className="mb-1" type="button">
-                        Bookings
-                      </button>
-                    </Link>
-                  </div>
-                  <div>
-                    <Link to="/admin-dashboard/add-movie">
-                      <button className="mb-1" type="button">
-                        Add Movie
-                      </button>
-                    </Link>
-                  </div>
-                </div>
-                <hr
-                  style={{
-                    borderWidth: 2 + "px",
-                  }}
-                />
-                <div className="admin-dsbrd">
-                  <MoviesDataTable
-                    movies={movies}
-                    deleteMovie={deleteMovie}
-                    getMovieDetails={getMovieDetails}
-                  />
-                </div>
-                {/*<div className="admin-dsbrd">
+                Movies
+              </button>
+              <button
+                className={
+                  toggleState === 2 ? "mb-1 tab-btn active" : "mb-1 tab-btn"
+                }
+                onClick={() => toggleTab(2)}
+              >
+                Showtimes
+              </button>
+              <button
+                className={
+                  toggleState === 3 ? "mb-1 tab-btn active" : "mb-1 tab-btn"
+                }
+                onClick={() => toggleTab(3)}
+              >
+                Bookings
+              </button>
+            </div>
+            <div>
+              <Link to="/admin-dashboard/add-movie">
+                <button className="mb-1" type="button">
+                  Add Movie
+                </button>
+              </Link>
+              <Link to="/add-showtime">
+                <button className="mb-1" type="button">
+                  Add Showtime
+                </button>
+              </Link>
+            </div>
+          </div>
+          <hr
+            style={{
+              borderWidth: 2 + "px",
+            }}
+          />
+          <div
+            className={toggleState === 1 ? "admin-dsbrd active" : "admin-dsbrd"}
+          >
+            <MoviesDataTable
+              movies={movies}
+              deleteMovie={deleteMovie}
+              getMovieDetails={getMovieDetails}
+            />
+          </div>
+          <div
+            className={toggleState === 2 ? "admin-dsbrd active" : "admin-dsbrd"}
+          >
+            <ShowtimesDataTable
+              showtimes={showtimes}
+              getMovieDetails={getMovieDetails}
+              deleteShowtime={deleteShowtime}
+              currentUser={currentUser}
+              token={token}
+            />
+          </div>
+          <div
+            className={toggleState === 3 ? "admin-dsbrd active" : "admin-dsbrd"}
+          >
+            <BookingsDataTable
+              bookings={bookings}
+              currentUser={currentUser}
+              deleteBooking={deleteBooking}
+            />
+          </div>
+          {/*<div className="admin-dsbrd">
                   <div className="dashboard">
                     <table id="table" className="display align-items-center">
                       <thead>
                         <tr>
-                          <th id="idZap">ID</th>
+                          <th>ID</th>
                           <th>Title</th>
                           <th>Slug</th>
                           <th>Release Year</th>
@@ -114,16 +167,20 @@ const AdminDashboard = ({
                     </table>
                   </div>
                 </div>*/}
-              </div>
-              ) : (
-                <>
-                <div className="container d-flex justify-content-center" style={{minHeight: 60 + "vh"}}>
-                  <h2 style={{textAlign: "center", margin: "auto"}}>Only admins have access to this page!</h2>
-                </div>
-                </>
-              )}
+        </div>
+      ) : (
+        <>
+          <div
+            className="container d-flex justify-content-center"
+            style={{ minHeight: 60 + "vh" }}
+          >
+            <h2 style={{ textAlign: "center", margin: "auto" }}>
+              Only admins have the access to this page!
+            </h2>
+          </div>
+        </>
+      )}
     </div>
-    
   );
 };
 

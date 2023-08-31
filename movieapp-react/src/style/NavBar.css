@@ -75,3 +75,17 @@ button:hover{
 .buttons button:hover{
     background:rgba(255, 255, 255, 0.1);
 }
+
+.logout-btn{
+    background: transparent;
+    font-size: 26px;
+    padding: 9px;
+    border-radius: 50%;
+    display: flex;
+    border: solid #edf0f1 2px;
+    margin-left: 10px;
+}
+
+.logout-btn:hover{
+    background:rgba(255, 255, 255, 0.1);
+}

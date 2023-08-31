@@ -3,12 +3,11 @@ import "../style/Login.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from 'react-router-dom';
-import swal from 'sweetalert';
+import { useNavigate } from "react-router-dom";
+import swal from "sweetalert";
 
-const Login = ({addToken, addUser}) => {
-
-  let navigate=useNavigate();
+const Login = ({ addToken, addUser, getUserBookings, handleLogin }) => {
+  let navigate = useNavigate();
 
   const [userData, setUserData] = useState({
     email: "",
@@ -42,7 +41,12 @@ const Login = ({addToken, addUser}) => {
         console.log(e);
         swal("Error!", "Please enter the correct email and password!", "error");
       });
+  }
 
+  function uloguj(e){
+    e.preventDefault();
+    handleLogin(e);
+    getUserBookings();
   }
 
   return (
@@ -56,7 +60,7 @@ const Login = ({addToken, addUser}) => {
                 <div className="form-title">
                   <h4 className="mb-3">Have Flicks account? Log In</h4>
                 </div>
-                <form onSubmit={handleLogin}>
+                <form onSubmit={uloguj}>
                   <div className="form-outline form-white mb-2">
                     <label className="bg-transparent" htmlFor="email">
                       Email

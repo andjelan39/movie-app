@@ -3,6 +3,11 @@ import Flicks from "../flickslogo.png";
 import "../style/NavBar.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { TbLogout } from "react-icons/tb";
+import { BiSolidUser } from "react-icons/bi";
+import { MdAdminPanelSettings } from "react-icons/md";
+import $ from "jquery";
+
 
 const NavBar = ({ token, removeToken, currentUser }) => {
   function handleLogout() {
@@ -47,6 +52,9 @@ const NavBar = ({ token, removeToken, currentUser }) => {
               <li className="nav-item">
                 <Link to="/movies">Movies</Link>
               </li>
+              <li className="nav-item">
+                <Link to="/in-cinema">In Cinema</Link>
+              </li>
             </ul>
             <div className="buttons">
               <Link to="/register">
@@ -67,6 +75,9 @@ const NavBar = ({ token, removeToken, currentUser }) => {
                 <Link to="/movies">Movies</Link>
               </li>
               <li className="nav-item">
+                <Link to="/in-cinema">In Cinema</Link>
+              </li>
+              {/*<li className="nav-item">
                 <Link to="/favourites">Favourites</Link>
               </li>
               {admin() ? (
@@ -77,10 +88,26 @@ const NavBar = ({ token, removeToken, currentUser }) => {
                 </li>
               ) : (
                 <></>
-              )}
+              )}*/}
             </ul>
+            {admin() ? (
+              <Link to="/admin-dashboard">
+                <button className="logout-btn">
+                  <MdAdminPanelSettings />
+                </button>
+              </Link>
+            ) : (
+              <></>
+            )}
+            <Link to="/favourites">
+              <button className="logout-btn">
+                <BiSolidUser />
+              </button>
+            </Link>
             <Link to="/" onClick={handleLogout}>
-              <button>Logout</button>
+              <button className="logout-btn">
+                <TbLogout />
+              </button>
             </Link>
           </>
         )}

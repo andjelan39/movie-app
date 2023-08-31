@@ -118,7 +118,7 @@ const MovieDetails = ({
             </p>
             <div className="details-buttons">
               <button name="watch-btn">WATCH</button>
-              <button name="watch-btn">BOOK</button>
+              <Link to="/in-cinema"><button name="watch-btn">BOOK</button></Link>
             </div>
           </div>
         </div>

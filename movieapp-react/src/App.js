@@ -19,9 +19,14 @@ import { UpdateMovie } from "./components/UpdateMovie";
 import swal from "sweetalert";
 import Contact from "./components/Contact";
 import Contact1 from "./components/Contact1";
+import AddShowtime from "./components/AddShowtime";
+import Showtimes from "./components/Showtimes";
+import BookMovie from "./components/BookMovie";
+import $ from "jquery";
 
 function App() {
   const [token, setToken] = useState();
+  const [userId, setUserId] = useState();
 
   function addToken(auth_token) {
     setToken(auth_token);
@@ -50,7 +55,10 @@ function App() {
         if (user.email == u.email) {
           setCurrentUser(user);
           console.log(user);
+          console.log(user.id);
+          window.sessionStorage.setItem("user_id", user.id);
           getFaves();
+          refreshBookings();
         }
       });
     }
@@ -99,6 +107,29 @@ function App() {
       .then(function (response) {
         console.log(JSON.stringify(response.data));
         setFavouriteMovies(response.data.fav_movies);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+  const [userBookings, setUserBookings] = useState([]);
+
+  function getUserBookings() {
+    var data = currentUser;
+
+    var config = {
+      method: "get",
+      url: "http://127.0.0.1:8000/api/bookings/join/" + window.sessionStorage.getItem("user_id"),
+      headers: {
+        Authorization: "Bearer " + window.sessionStorage.getItem("auth_token"),
+      },
+    };
+
+    axios(config)
+      .then(function (response) {
+        //console.log(JSON.stringify(response.data));
+        setUserBookings(response.data);
       })
       .catch(function (error) {
         console.log(error);
@@ -233,6 +264,94 @@ function App() {
     });
   };
 
+  const [showtimes, setShowtimes] = useState();
+  useEffect(() => {
+    if (showtimes == null) {
+      axios.get("http://127.0.0.1:8000/api/showtimes").then((res) => {
+        console.log(res.data);
+        setShowtimes(res.data.showtimes);
+      });
+    }
+  }, [showtimes]);
+
+  const reloadShowtimes = () => {
+    axios.get("http://127.0.0.1:8000/api/showtimes").then((res) => {
+      console.log(res.data);
+      setShowtimes(res.data.showtimes);
+    });
+  };
+
+  const [bookings, setBookings] = useState();
+  useEffect(() => {
+    if (bookings == null) {
+      axios.get("http://127.0.0.1:8000/api/bookings").then((res) => {
+        console.log(res.data);
+        setBookings(res.data.bookings);
+      });
+    }
+  }, [bookings]);
+
+  const reloadBookings = () => {
+    axios.get("http://127.0.0.1:8000/api/bookings").then((res) => {
+      console.log(res.data);
+      setBookings(res.data.bookings);
+    });
+  };
+
+  const refreshBookings = () => {
+    axios.get("http://127.0.0.1:8000/api/bookings/join/" + window.sessionStorage.getItem("user_id")).then((res) => {
+      setUserBookings(res.data);
+      console.log(res.data);
+    });
+  };
+
+  const deleteShowtime = (e, id) => {
+    e.preventDefault();
+
+    var config = {
+      method: "delete",
+      url: "http://127.0.0.1:8000/api/showtimes/" + id,
+      headers: {
+        Authorization: "Bearer " + window.sessionStorage.getItem("auth_token"),
+      },
+    };
+
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        swal("Success!", "Showtime successfully deleted!", "success");
+        reloadShowtimes();
+      })
+      .catch(function (error) {
+        console.log(error);
+        swal("Error!", "Failed to delete the showtime!", "error");
+      });
+  };
+
+  const deleteBooking = (e, id) => {
+    e.preventDefault();
+
+    var config = {
+      method: "delete",
+      url: "http://127.0.0.1:8000/api/bookings/" + id,
+      headers: {
+        Authorization: "Bearer " + window.sessionStorage.getItem("auth_token"),
+      },
+    };
+
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        swal("Success!", "Booking successfully deleted!", "success");
+        reloadBookings();
+        refreshBookings();
+      })
+      .catch(function (error) {
+        console.log(error);
+        swal("Error!", "Failed to delete booking!", "error");
+      });
+  };
+
   return (
     <BrowserRouter>
       <NavBar
@@ -245,14 +364,14 @@ function App() {
           path="/"
           element={
             <React.Fragment>
-              <Header />
+              <Header token={token} />
               <FAQ />
             </React.Fragment>
           }
         />
         <Route
           path="/login"
-          element={<Login addToken={addToken} addUser={addUser} />}
+          element={<Login addToken={addToken} addUser={addUser} getUserBookings={getUserBookings} />}
         />
         <Route path="/register" element={<Register />} />
         <Route
@@ -301,6 +420,8 @@ function App() {
                 favouriteMovies={currentPosts}
                 addToFaves={addToFaves}
                 removeFromFaves={removeFromFaves}
+                userBookings={userBookings}
+                getUserBookings={getUserBookings}
               />
               <Pagination
                 totalPosts={favouriteMovies.length}
@@ -319,6 +440,11 @@ function App() {
               deleteMovie={deleteMovie}
               currentUser={currentUser}
               getMovieDetails={getMovieDetails}
+              showtimes={showtimes}
+              deleteShowtime={deleteShowtime}
+              bookings={bookings}
+              deleteBooking={deleteBooking}
+              token={token}
             />
           }
         />
@@ -344,16 +470,34 @@ function App() {
             />
           }
         />
-        {/*<Route
-          path="/contact"
-          element={<Contact/>}
-        />*/}
+        <Route path="/contact" element={<Contact1 />} />
         <Route
-          path="/contact"
-          element={<Contact/>}
+          path="/add-showtime"
+          element={
+            <AddShowtime
+              movies={movies}
+              currentUser={currentUser}
+              reloadShowtimes={reloadShowtimes}
+            />
+          }
+        />
+        <Route
+          path="/in-cinema"
+          element={
+            <Showtimes
+              showtimes={showtimes}
+              getMovieDetails={getMovieDetails}
+              deleteShowtime={deleteShowtime}
+              currentUser={currentUser}
+            />
+          }
+        />
+        <Route
+          path="/showtimes/:id"
+          element={<BookMovie reloadBookings={reloadBookings} refreshBookings={refreshBookings}/>}
         />
       </Routes>
-      <Footer />
+      <Footer token={token} />
     </BrowserRouter>
   );
 }

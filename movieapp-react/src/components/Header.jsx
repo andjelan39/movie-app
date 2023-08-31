@@ -1,9 +1,9 @@
 import React from "react";
 import "../style/Header.css";
 import DunePoster from "../img/duneposter.png";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const Header = () => {
+const Header = ({ token }) => {
   return (
     <div>
       <div className="image">
@@ -20,11 +20,19 @@ const Header = () => {
             feel like you're right in the middle of the action. Create your
             account NOW and indulge in endless entertainment.
           </p>
-          <Link to='/register'><button>Register</button></Link>
+          {token == null ? (
+            <Link to="/register">
+              <button>Register</button>
+            </Link>
+          ) : (
+            <Link to="/favourites">
+              <button>Register</button>
+            </Link>
+          )}
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default Header;
