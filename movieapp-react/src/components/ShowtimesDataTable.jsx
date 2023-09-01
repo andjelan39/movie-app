@@ -152,7 +152,7 @@ const ShowtimesDataTable = ({
   });
 
   return (
-    <div>
+    <div style={{ minHeight: 50 + "vh" }}>
       <table className="display align-items-center" id="tabelaShowtimes">
         <thead>
           <tr className="text-left font-medium">

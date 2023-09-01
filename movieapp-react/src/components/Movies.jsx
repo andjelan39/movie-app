@@ -3,6 +3,7 @@ import "../style/Movies.css";
 import OneMovie from "./OneMovie";
 import { useState } from "react";
 import { BsSearch } from "react-icons/bs";
+import axios from "axios";
 
 const Movies = ({
   movies,
@@ -27,6 +28,46 @@ const Movies = ({
     setSorting(e.target.value);
   }
 
+  const [date, setDate] = useState({
+    holName: "",
+    holDate: "",
+  });
+
+  function holidayApi() {
+    if (date.holDate != "") {
+      date.holDate = "";
+      date.holName = "";
+    } else {
+      axios
+        .get("https://date.nager.at/api/v2/publicholidays/2023/IS")
+        .then((response) => {
+          var today = new Date();
+          var date =
+            today.getFullYear() +
+            "-0" +
+            (today.getMonth() + 1) +
+            "-" +
+            today.getDate();
+          let data = response.data;
+          let holidayDate = "";
+          let holidayName = "";
+          data.forEach((item) => {
+            if (item.date >= date) {
+              if (holidayDate == "") {
+                holidayDate = item.date;
+                holidayName = item.name;
+              }
+            }
+          });
+          setDate({
+            holDate: holidayDate,
+            holName: holidayName,
+          });
+        }, [])
+        .catch((error) => console.log(error));
+    }
+  }
+
   return (
     <div className="container">
       <div className="movies-hero-section">
@@ -40,6 +81,8 @@ const Movies = ({
           and enjoy your favorite movies on any device, anytime, and anywhere.
           Start exploring now and let the cinematic adventure begin!
         </p>
+        <p>We add NEW MOVIES every holiday. Click below to see the next big holiday!</p>
+        <p onClick={holidayApi}><b><u>Next holiday:</u></b> {date.holName} {date.holDate}</p>
       </div>
       <div className="filters">
         <div className="filter-by"></div>

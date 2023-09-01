@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import OneMovie from "./OneMovie";
 import "../style/Movies.css";
-import axios from "axios";
 import $ from "jquery";
 
 const Faves = ({
@@ -12,8 +11,7 @@ const Faves = ({
   favouriteMovies,
   addToFaves,
   removeFromFaves,
-  userBookings,
-  getUserBookings
+  userBookings
 }) => {
   $(document).ready(function () {
     $("#tableBook").DataTable({
@@ -40,8 +38,8 @@ const Faves = ({
   return (
     <div className="container">
       <div className="movies-hero-section">
-        <h1>Favourite Movies</h1>
-        <p>All your favourite movies at one place.</p>
+        <h1>My Profile</h1>
+        <p>Find all your bookings and favourite movies at one place.</p>
       </div>
       <div>
         <div>

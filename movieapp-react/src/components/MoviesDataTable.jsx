@@ -99,7 +99,7 @@ const MoviesDataTable = ({ movies, deleteMovie, getMovieDetails }) => {
   });
 
   return (
-    <div>
+    <div style={{ minHeight: 50 + "vh" }}>
       <table className="display align-items-center" id="tabela">
         <thead>
           <tr className="text-left font-medium">

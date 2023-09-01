@@ -1,6 +1,6 @@
 import React from "react";
 import "../style/Header.css";
-import DunePoster from "../img/duneposter.png";
+import DunePoster from "../img/duneposterfin.png";
 import { Link } from "react-router-dom";
 
 const Header = ({ token }) => {
@@ -8,7 +8,7 @@ const Header = ({ token }) => {
     <div>
       <div className="image">
         <img className="image__img" src={DunePoster} alt="" />
-        <div className="headline">
+        {/*<div className="headline">
           <h1>
             DISCOVER A WORLD <br />
             OF BLOCKBUSTERS, <br />
@@ -29,7 +29,7 @@ const Header = ({ token }) => {
               <button>Register</button>
             </Link>
           )}
-        </div>
+          </div>*/}
       </div>
     </div>
   );

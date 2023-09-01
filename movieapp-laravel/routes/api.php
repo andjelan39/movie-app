@@ -49,7 +49,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     }
     );
 
-    Route::resource('/movies', MovieController::class)->only(['update', 'store', 'destroy', 'edit']);
+    Route::resource('/movies', MovieController::class)->only(['update', 'store', 'destroy']);
     Route::resource('/showtimes', ShowtimeController::class)->only(['store', 'destroy']);
     Route::resource('/bookings', BookingController::class)->only(['store', 'destroy']);
     Route::resource('/favmovies', FavMovieController::class)->only(['index', 'show', 'store', 'destroy']);

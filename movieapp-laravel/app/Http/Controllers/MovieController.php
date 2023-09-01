@@ -97,7 +97,7 @@ class MovieController extends Controller
      */
     public function edit($id)
     {
-        $movie = Movie::find($id);
+       /* $movie = Movie::find($id);
         if($movie){
             return response()->json([
                 'status' => 200,
@@ -108,7 +108,7 @@ class MovieController extends Controller
                 'status' => 404,
                 'message' => 'Movie not found',
             ]);
-        }
+        }*/
 
     }
 

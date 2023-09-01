@@ -91,7 +91,7 @@ const BookingsDataTable = ({bookings, currentUser, deleteBooking}) => {
   });
 
   return (
-    <div>
+    <div style={{ minHeight: 50 + "vh" }}>
       <table className="display align-items-center" id="tabelaBook">
         <thead>
           <tr className="text-left font-medium">

@@ -353,7 +353,9 @@ function App() {
   };
 
   return (
-    <BrowserRouter>
+    <div className="page-containter">
+      <div className="content-wrap">
+      <BrowserRouter>
       <NavBar
         token={token}
         removeToken={removeToken}
@@ -499,6 +501,9 @@ function App() {
       </Routes>
       <Footer token={token} />
     </BrowserRouter>
+      </div>
+    </div>
+    
   );
 }
 

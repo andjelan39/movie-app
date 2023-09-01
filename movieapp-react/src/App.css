@@ -90,3 +90,13 @@ body {
 option{
   color: #0E1027;
 }
+
+.page-containter{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-wrap{
+  flex: 1;
+}

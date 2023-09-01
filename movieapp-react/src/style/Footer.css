@@ -20,16 +20,17 @@
 }*/
 
 .footer__content{
-    position: absolute;
+    position: relative;
     width: 100%;
     justify-content: center;
     text-align: center;
-   margin-top: auto;
+    bottom: 0;
+    top: auto;
     background-color: #0E1027;
 }
 
 .footer__div{
-    position: relative;
+    bottom:0 ;
     padding-bottom: 15px;
 }
 
